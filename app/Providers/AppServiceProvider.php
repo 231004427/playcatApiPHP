@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-
+use DB;
+use Log;
+use Illuminate\Support\Carbon;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -13,7 +15,17 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        //数据库跟踪
+        DB::listen(function ($query) {
+            // $query->sql
+            // $query->bindings
+            // $query->time
+            Log::debug('SQL:'.$query->sql.' 消耗'.$query->time);
+        });
+        //日期格式
+        Carbon::serializeUsing(function ($carbon) {
+            return $carbon->format('Y-m-d h:i:s');
+        });
     }
 
     /**

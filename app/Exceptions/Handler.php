@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Exceptions;
-
 use Exception;
+use Log;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-
+use App\Json\MessageHelp;
 class Handler extends ExceptionHandler
 {
     /**
@@ -46,6 +46,9 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        // $result=MessageHelp::BuildBaseResult(1,"系统错误",-1,"服务器错误(".$exception->getCode().")");
+        // echo json_encode($result);
+        //Log::error($exception->getMessage());
         return parent::render($request, $exception);
     }
 }

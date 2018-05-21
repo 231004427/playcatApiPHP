@@ -48,7 +48,7 @@ return [
             'password' => env('DB_PASSWORD', ''),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
-            'collation' => 'utf8mb4_unicode_ci',
+            'collation' => 'utf8mb4_bin',
             'prefix' => '',
             'strict' => true,
             'engine' => null,
@@ -110,11 +110,16 @@ return [
 
         'default' => [
             'host' => env('REDIS_HOST', '127.0.0.1'),
-            'password' => env('REDIS_PASSWORD', null),
+            'password' => env('REDIS_PASSWORD', 'sun123'),
             'port' => env('REDIS_PORT', 6379),
             'database' => 0,
         ],
-
+        'session' => [
+            'host' => env('SESS_REDIS_HOST', '127.0.0.1'),
+            'password' => env('SESS_REDIS_PASSWORD', 'sun123'),
+            'port' => env('SESS_REDIS_PORT', 6379),
+            'database' => 0,
+        ],
     ],
 
 ];
